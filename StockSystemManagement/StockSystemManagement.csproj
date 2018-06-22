@@ -2,10 +2,32 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="App.tsx" />
+    <None Remove="Component\Login.tsx" />
+    <None Remove="Component\Register.tsx" />
+    <None Remove="webpack.config.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\static\StyleSheet.css" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="App.tsx" />
+    <TypeScriptCompile Include="Component\Login.tsx" />
+    <TypeScriptCompile Include="Component\Register.tsx" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="node &quot;$(ProjectDir)node_modules\webpack\bin\webpack.js&quot;&#xD;&#xA;" />
+  </Target>
 
 </Project>
