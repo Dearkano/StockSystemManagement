@@ -63,13 +63,7 @@ class Register extends React.Component<Props, {}> {
                 </FormItem>
 
 
-                <FormItem>
-                    {getFieldDecorator('password', {
-                        rules: [{ required: true, message: '请输入密码' }],
-                    })(
-                        <Input type="password" placeholder="密码" />
-                    )}
-                </FormItem>
+             
                 <FormItem>
                     <Button type="primary" htmlType="submit" className="login-form-button">
                         注册

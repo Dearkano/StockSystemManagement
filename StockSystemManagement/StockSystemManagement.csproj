@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <None Remove="App.tsx" />
+    <None Remove="Component\Bind.tsx" />
     <None Remove="Component\Login.tsx" />
     <None Remove="Component\Register.tsx" />
     <None Remove="webpack.config.ts" />
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="App.tsx" />
+    <TypeScriptCompile Include="Component\Bind.tsx" />
     <TypeScriptCompile Include="Component\Login.tsx" />
     <TypeScriptCompile Include="Component\Register.tsx" />
   </ItemGroup>

@@ -2,8 +2,11 @@
 
 import * as React from 'react';
 
-import { Form, Icon, Input, Checkbox, Button, Radio } from 'antd';
-import { FormComponentProps, FormCreateOption } from 'antd/lib/form';
+import Form, { FormComponentProps, FormCreateOption } from 'antd/lib/form';
+import Input from 'antd/lib/input';
+import Icon from 'antd/lib/icon';
+import Button from 'antd/lib/button';
+import Checkbox from 'antd/lib/checkbox';
 const FormItem = Form.Item;
 // test Form.create on component with own props
 
@@ -25,21 +28,21 @@ class WithOwnProps extends React.Component<WithOwnPropsProps, {}> {
                 
                     <FormItem>
                         {getFieldDecorator('userName', {
-                            rules: [{ required: true, message: 'Please input your username!' }],
+                            rules: [{ required: true, message: '请输入管理员账号' }],
                         })(
-                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="账号" />
                         )}
                     </FormItem>
                     <FormItem>
                         {getFieldDecorator('password', {
                             rules: [{ required: true, message: 'Please input your Password!' }],
                         })(
-                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="密码" />
                         )}
                 </FormItem>
                 <FormItem>
                     <Button type="primary" htmlType="submit" className="login-form-button">
-                        Log in
+                        登陆
           </Button>
                 </FormItem>
                     <FormItem>
