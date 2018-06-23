@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 
 import { Form, Icon, Input, Checkbox, Button,Radio } from 'antd';
-import { FormComponentProps, FormCreateOption } from 'antd/lib/form';
+import { FormComponentProps, FormCreateOption } from 'antd/es/form';
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 
