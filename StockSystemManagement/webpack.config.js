@@ -1,24 +1,34 @@
-﻿var CleanWebpackPlugin = require("clean-webpack-plugin")
-var Webpack = require('webpack');
-var path = require("path");
-var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+﻿const Webpack = require('webpack');
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const tsImportPluginFactory = require('ts-import-plugin')
 
-var config = {
+
+const config = {
     mode: "development",
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: 'awesome-typescript-loader'
+                loader: 'awesome-typescript-loader',
+                options: {
+                    getCustomTransformers: () => ({
+                        before: [ tsImportPluginFactory({
+                            libraryName: 'antd',
+                            libraryDirectory: 'es',
+                            style: 'css'
+                        }) ]
+                    }),
+                },
+                exclude: /node_modules/,
             },
             {
-
                 test: /\.css$/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                 ]
-
             },
         ]
     },
@@ -28,9 +38,8 @@ var config = {
     entry: ['./App.tsx'],
     output: {
         path: path.resolve(__dirname, 'wwwroot/'),
-        // should use absolute path
         publicPath: '/',
-        filename: '../wwwroot/static/main.js'
+        filename: 'static/main.js'
     },
     plugins: [
         // clean wwwroot
@@ -38,7 +47,19 @@ var config = {
             'static/main.js',
             'static/site.css'
         ]),
-        new MiniCssExtractPlugin({ filename: "static/site.css" })
-    ]
+        new MiniCssExtractPlugin({
+            filename: "static/site.css"
+        })
+    ],
+    devServer: {
+
+        contentBase: path.resolve(__dirname, "wwwroot/static"),
+
+        historyApiFallback: true,
+        open: true,
+        port: 8000,
+        stats: 'errors-only',
+    },
 };
+
 module.exports = config;
